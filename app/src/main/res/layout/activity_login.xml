@@ -22,7 +22,7 @@
         android:orientation="vertical">
 
     <EditText
-        android:id="@+id/emailSignIp"
+        android:id="@+id/emailSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -33,7 +33,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/passwordSignIp"
+        android:id="@+id/passwordSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"

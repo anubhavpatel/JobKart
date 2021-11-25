@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "406304660172",
+    "project_id": "dream-jobs-f67e9",
+    "storage_bucket": "dream-jobs-f67e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406304660172:android:80e9362cc74d252d584069",
+        "android_client_info": {
+          "package_name": "com.fantasy.dreamjobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406304660172-uj7k5sr3a4lrff3iu03sp8socda1nluv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl5IdbdOWWRpHYnPifsT5wRRYUct0aWis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406304660172-uj7k5sr3a4lrff3iu03sp8socda1nluv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
