@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartActivity"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:src="@drawable/img" />
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img"
+        android:text="Get The Job"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        android:text="That you Dream"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"/>
+      <TextView
+          android:id="@+id/text3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="The app that help you to find"
+          android:layout_centerInParent="true"
+          android:layout_below="@+id/text1"/>
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="your dream job according to your skillest"
+        android:layout_below="@+id/text3"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text4"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/btn_bg"
+            android:text="Register"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/btn_bg"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

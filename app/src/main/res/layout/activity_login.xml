@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/loginLogo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+
+        android:src="@drawable/start"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/loginLogo"
+        android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/emailSignIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/edit_text"
+        android:hint="email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/passwordSignIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/edit_text"
+        android:hint="Password"
+        android:inputType="textPassword" />
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/btn_bg"
+            android:text="Login"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+</RelativeLayout>
