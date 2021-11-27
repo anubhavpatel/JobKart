@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="" />
+        android:title="Home"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+
     <item
         android:id="@+id/nav_add"
-        android:icon="@drawable/ic_add"
-        android:title="" />
+        android:icon="@drawable/ic_events"
+        android:title="Event"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_user"
-        android:title="" />
+        android:title="Profile"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
 </menu>

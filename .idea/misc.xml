@@ -5,14 +5,18 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.10869565217391304" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/bottom_nav_menu.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/ff.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/menu/top_nav_bar.xml" value="0.19322916666666667" />
       </map>
     </option>
   </component>
