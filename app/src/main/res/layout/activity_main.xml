@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nav_view"
             android:layout_alignParentBottom="true"
-            app:labelVisibilityMode="unlabeled"
+
             android:background="@color/white"
             app:menu="@menu/bottom_nav_menu"
             />

@@ -11,4 +11,8 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home"><font size="12">Home</font></string>
+    <string name="posts"><font size="12">Posts</font></string>
+    <string name="chat"><font size="12">Chat</font></string>
+    <string name="profile"><font size="12">Profile</font></string>
 </resources>

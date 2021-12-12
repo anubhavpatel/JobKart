@@ -1,60 +1,160 @@
 package com.fantasy.dreamjobs.Fragment
 
+import android.app.Activity
+import android.app.Dialog
+import android.app.ProgressDialog
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.fantasy.dreamjobs.EditProfileActivity
+import com.fantasy.dreamjobs.LoginActivity
 import com.fantasy.dreamjobs.R
+import com.fantasy.dreamjobs.databinding.FragmentProfileBinding
+import com.firebase.ui.auth.data.model.User
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import com.google.firebase.storage.ktx.storage
+import de.hdodenhof.circleimageview.CircleImageView
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding : FragmentProfileBinding
+    private lateinit var auth: FirebaseAuth
+    private  lateinit var databaseReference : DatabaseReference
+    private lateinit var storageReference: DatabaseReference
+    private lateinit var uid : String
+    private lateinit var user : User
+    private  lateinit var dialog :Dialog
+    private lateinit var profile_name : TextView
+    private  lateinit var setImage : ImageView
+    private lateinit var imgProfile : CircleImageView
+    private lateinit var logOutAcc : TextView
+    private lateinit var editProfile : TextView
+    private var filepath: Uri?=null
+    private lateinit var ImageUri : Uri
+    private  var ImgUrl : String=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+
+        return  inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        profile_name= view.findViewById<TextView>(R.id.profile_name)!!
+        binding = FragmentProfileBinding.inflate(layoutInflater)
+        auth = FirebaseAuth.getInstance()
+        uid = auth.currentUser?.uid.toString()
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+        if (uid.isNotEmpty()) {
+            getUserData()
+        }
+        setImage = view.findViewById(R.id.setImage)
+        imgProfile = view.findViewById(R.id.imgProfile)
+        setImage.setOnClickListener {
+           startFileChooser()
+        }
+        editProfile=view.findViewById(R.id.editProfile)
+        editProfile.setOnClickListener {
+            val intent = Intent(activity,EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+        logOutAcc=view.findViewById(R.id.logOutAcc)
+        logOutAcc.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(activity,LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
+    }
+
+    private fun startFileChooser() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Choose Image"), 111)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 111 && resultCode == Activity.RESULT_OK && data != null) {
+            filepath = data.data!!
+
+            val bitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, filepath)
+            imgProfile.setImageBitmap(bitmap)
+        }
+        if(filepath!=null) {
+            uploadImageToFirebaseStorage()
+        }
+    }
+    private fun uploadImageToFirebaseStorage() {
+        if(filepath!= null){
+            val progressDialog = ProgressDialog(context)
+            progressDialog.setTitle("Uploading...")
+            progressDialog.show()
+            var imageRef =FirebaseStorage.getInstance().reference.child("image/pic.jpg")
+            imageRef.putFile(filepath!!)
+                .addOnSuccessListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(context,"File Uploaded",Toast.LENGTH_SHORT).show()
+                      imageRef.downloadUrl.addOnCompleteListener{
+                          if (it.isSuccessful) {
+                              val downloadUri = it.result
+                              ImgUrl=downloadUri.toString()
+                          } else {
+                              // Handle failures
+                              // ...
+                          }
+                      }
+                   if(ImgUrl!=""){ databaseReference.child(uid).child("imgUrl").setValue(ImgUrl)
+
+                   }
+
+                }
+                .addOnFailureListener(){
+                    progressDialog.dismiss()
+                    Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show()
+                }
+                .addOnProgressListener  {
+                    val progress = (100.0 * it.bytesTransferred)/ it.totalByteCount
+                    Toast.makeText(context,"Uploaded",Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+    
+    private fun getUserData() {
+        databaseReference.child(uid).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                 profile_name.text=snapshot.child("fullName").value.toString()
+                context?.let {
+                    Glide.with(it)
+                        .load("https://firebasestorage.googleapis.com/v0/b/dream-jobs-f67e9.appspot.com/o/image%2Fpic.jpg?alt=media&token=bb8f99dc-a07e-45de-80ed-6b92866e76d2")
+                        .into(imgProfile)
                 }
             }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
+
 }
