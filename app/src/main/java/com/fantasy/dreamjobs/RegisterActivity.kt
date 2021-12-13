@@ -5,10 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -22,6 +19,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var mobileNumberSignUp : EditText
     private lateinit var emailSignUp : EditText
     private lateinit var passwordSignUp : EditText
+    private  lateinit var backToLogin: TextView
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +30,12 @@ class RegisterActivity : AppCompatActivity() {
         mobileNumberSignUp=findViewById(R.id.mobileNumberSignUp)
         emailSignUp=findViewById(R.id.emailSignUp)
         passwordSignUp=findViewById(R.id.passwordSignUp)
+        backToLogin=findViewById(R.id.backToLogin)
         auth = Firebase.auth
+        backToLogin.setOnClickListener {
+            val intent=Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+        }
         backSignUp.setOnClickListener{
             val intent = Intent(this,StartActivity::class.java)
             startActivity(intent)

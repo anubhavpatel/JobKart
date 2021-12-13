@@ -92,5 +92,13 @@
             android:background="@drawable/btn_bg"
             android:text="Register"
             android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/backToLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account ?"
+            android:textSize="18dp"
+            android:layout_marginLeft="140dp"
+            />
     </LinearLayout>
 </RelativeLayout>

@@ -52,6 +52,14 @@
             android:background="@drawable/btn_bg"
             android:text="Login"
             android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/backToRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register ?"
+                android:textSize="18dp"
+                android:layout_marginLeft="240dp"
+                />
     </LinearLayout>
 
 </RelativeLayout>
