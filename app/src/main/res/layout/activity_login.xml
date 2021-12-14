@@ -7,13 +7,17 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:layout_marginTop="20dp"
         android:id="@+id/loginLogo"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
 
-        android:src="@drawable/img"/>
+        android:src="@drawable/img" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginLogo">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,14 +56,28 @@
             android:background="@drawable/btn_bg"
             android:text="Login"
             android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/noAcc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+                android:layout_marginLeft="100dp"
+                />
             <TextView
                 android:id="@+id/backToRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Register ?"
-                android:textSize="18dp"
-                android:layout_marginLeft="240dp"
+                android:text="SignUp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 />
-    </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>  </ScrollView>
 
 </RelativeLayout>
