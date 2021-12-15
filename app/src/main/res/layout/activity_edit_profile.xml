@@ -253,7 +253,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/save_changes"
+                android:id="@+id/saveChanges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

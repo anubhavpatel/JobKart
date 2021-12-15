@@ -1,10 +1,14 @@
 package com.fantasy.dreamjobs
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.fantasy.dreamjobs.Fragment.ProfileFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -18,12 +22,15 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var fullNameEditProfile : TextView
     private lateinit var mobileNoEditProfile : TextView
     private lateinit var emailEditProfile : TextView
+    private lateinit var saveChanges: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         fullNameEditProfile=findViewById(R.id.fullNameEditProfile)
         mobileNoEditProfile=findViewById(R.id.mobileNoEditProfile)
         emailEditProfile=findViewById(R.id.emailEditProfile)
+        saveChanges=findViewById(R.id.saveChanges)
+
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser?.uid.toString()
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")

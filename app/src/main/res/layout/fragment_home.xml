@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.HomeFragment">
+    tools:context=".Fragment.HomeFragment"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout_home"
@@ -68,12 +69,21 @@
         android:drawableRight="@drawable/ic_search"
         android:hint="search your jobs.." />
 
-
+    <TextView
+        android:id="@+id/popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchJobs"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="18dp"
+        android:text="popular jobs"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerJobs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchJobs"
+        android:layout_below="@+id/popular"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 </RelativeLayout>
