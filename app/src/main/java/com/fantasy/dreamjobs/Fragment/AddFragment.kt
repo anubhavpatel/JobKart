@@ -25,7 +25,7 @@ class AddFragment : Fragment() {
     private lateinit var jobTitle : EditText
     private lateinit var binding : FragmentAddBinding
     private lateinit var location : EditText
-    private lateinit var closeAdd : ImageView
+
     private lateinit var reset :  Button
     private lateinit var description : EditText
     private lateinit var auth: FirebaseAuth
@@ -46,7 +46,7 @@ class AddFragment : Fragment() {
         jobPosted=view.findViewById(R.id.jobPosted)
         jobTitle=view.findViewById(R.id.jobTitle)
         reset=view.findViewById(R.id.reset)
-        closeAdd=view.findViewById(R.id.closeAdd)
+
         location=view.findViewById(R.id.location)
         description=view.findViewById(R.id.description)
         auth = FirebaseAuth.getInstance()
@@ -56,10 +56,7 @@ class AddFragment : Fragment() {
             location.setText("")
             description.setText("")
         }
-        closeAdd.setOnClickListener {
-            val intent = Intent(context,MainActivity::class.java)
-            startActivity(intent)
-        }
+
         jobPosted.setOnClickListener {
             val currentTimestamp = System.currentTimeMillis()
             databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("jobPost").child(currentTimestamp.toString())

@@ -10,11 +10,13 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.fantasy.dreamjobs.AdapterPostedJobs
 import com.fantasy.dreamjobs.ModelPostedJobs
 import com.fantasy.dreamjobs.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -23,6 +25,7 @@ class HomeFragment : Fragment() {
    private lateinit var recyclerView: RecyclerView
    private lateinit var arrayList : ArrayList<ModelPostedJobs>
    private lateinit var adapterJobs : AdapterPostedJobs
+   private lateinit var imgPro : CircleImageView
    private lateinit var searchJobs : EditText
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +42,12 @@ class HomeFragment : Fragment() {
         recyclerView=view.findViewById(R.id.recyclerJobs)
         searchJobs=view.findViewById(R.id.searchJobs)
         recyclerView.layoutManager=LinearLayoutManager(context)
+        imgPro=view.findViewById(R.id.imgPro)
+        // for fetching img on mainActivity //
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+        if (uid.isNotEmpty()) {
+            getUserData()
+        }
         databaseReference = FirebaseDatabase.getInstance().reference.child("Users").child("JobPosted")
         databaseReference.addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -72,6 +81,26 @@ class HomeFragment : Fragment() {
             override fun afterTextChanged(p0: Editable?) {
             }
 
+        })
+    }
+
+    private fun getUserData() {
+        databaseReference.child(uid).addValueEventListener(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+//
+                if(snapshot.child("imgUrl").exists()){
+                    context?.let {
+                        Glide.with(it)
+                            .load(snapshot.child("imgUrl").value.toString())
+                            .into(imgPro)
+                    }
+                }else{
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
         })
     }
 

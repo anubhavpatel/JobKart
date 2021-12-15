@@ -10,7 +10,8 @@
         android:id="@+id/app_bar_layout_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#A9A9A9">
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/home_toolbar"
@@ -25,46 +26,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/homeText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:maxLines="1"
-                    android:text="Home"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/searchJobs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@+id/notification"
-                    android:layout_toRightOf="@+id/homeText"
-                    android:background="@drawable/edit_text"
-                    android:drawableRight="@drawable/ic_search"
-                    android:hint="search" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgPro"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_user" />
 
                 <ImageView
                     android:id="@+id/notification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="20dp"
                     android:src="@drawable/ic_notifications" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar_layout_home"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:text=" Discover your\n favorite jobs."
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/searchJobs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/favorite"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/search_bg"
+        android:drawableRight="@drawable/ic_search"
+        android:hint="search your jobs.." />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerJobs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar_layout_home"
+        android:layout_below="@+id/searchJobs"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="20dp" />
 </RelativeLayout>

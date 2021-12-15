@@ -6,19 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.AddFragment">
 
-    <ImageView
-        android:id="@+id/closeAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/ic_close" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/createJob"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:layout_below="@+id/closeAdd"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
@@ -30,53 +21,61 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/jobTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Set a Job Title"
-                android:textAlignment="center" />
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/ic_user" />
+                    android:src="@drawable/logo" />
 
-                <LinearLayout
+                <EditText
+                    android:id="@+id/jobTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Set a location"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="India" />
-                </LinearLayout>
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:hint="Set a Job Title"
+                    android:maxLength="30"/>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:text="Set a location"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:hint="India"
+                    android:maxLength="10"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -88,11 +87,11 @@
 
                 <EditText
                     android:id="@+id/description"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="i am a android developer"
-                    android:inputType="text|textNoSuggestions" />
+                    android:hint="i want a android developer"
+                    android:inputType="text|textMultiLine|textCapSentences"/>
             </LinearLayout>
 
         </LinearLayout>

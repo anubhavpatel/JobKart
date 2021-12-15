@@ -41,8 +41,8 @@
                     android:textStyle="bold" />
 
 
-                <EditText
-                    android:id="@+id/first_name_edit_profile"
+                <TextView
+                    android:id="@+id/fullNameEditProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -77,8 +77,8 @@
                     android:textStyle="bold" />
 
 
-                <EditText
-                    android:id="@+id/email_edit_profile"
+                <TextView
+                    android:id="@+id/emailEditProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -86,7 +86,6 @@
                     android:background="@android:color/transparent"
                     android:ems="20"
                     android:focusable="true"
-                    android:inputType="textPersonName"
                     android:textSize="14dp"
                     android:text="Email"
                     />
@@ -113,8 +112,8 @@
                     android:textStyle="bold" />
 
 
-                <EditText
-                    android:id="@+id/mobileNo_edit_profile"
+                <TextView
+                    android:id="@+id/mobileNoEditProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -209,7 +208,7 @@
                     android:background="@android:color/transparent"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="City name"
+                    android:text=" enter your city name"
                     android:textSize="14dp"/>
                 <View
                     android:layout_width="match_parent"
@@ -244,7 +243,7 @@
                     android:ems="10"
                     android:focusable="true"
                     android:inputType="textPersonName"
-                    android:text="Address"
+                    android:text="enter your address"
                     android:textSize="14dp"/>
                 <View
                     android:layout_width="match_parent"
