@@ -65,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 when{
                     TextUtils.isEmpty(fullName)-> Toast.makeText(this@RegisterActivity,"full name is required", Toast.LENGTH_LONG).show()
-                    TextUtils.isEmpty(mobileNumber)  -> Toast.makeText(this@RegisterActivity,"mobile number is less than 10 can't proceed", Toast.LENGTH_LONG).show()
+                    TextUtils.isEmpty(mobileNumber)  -> Toast.makeText(this@RegisterActivity,"mobile number is required", Toast.LENGTH_LONG).show()
                     TextUtils.isEmpty(email) || bool -> Toast.makeText(this@RegisterActivity,"email already exits or required", Toast.LENGTH_LONG).show()
                     TextUtils.isEmpty(password)||(password.length<6 )-> Toast.makeText(this@RegisterActivity,"password is required", Toast.LENGTH_LONG).show()
                     else -> {
@@ -87,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
 
                                     } else {
                                         // If sign in fails, display a message to the user.
-                                        Toast.makeText(baseContext, " failed.",
+                                        Toast.makeText(baseContext, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show()
                                         progressDialog.dismiss()
                                     }

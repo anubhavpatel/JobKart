@@ -28,25 +28,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:id="@+id/homeText"
                     android:maxLines="1"
                     android:text="Home"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/searchJobs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/notification"
+                    android:layout_toRightOf="@+id/homeText"
+                    android:background="@drawable/edit_text"
+                    android:drawableRight="@drawable/ic_search"
+                    android:hint="search" />
+
                 <ImageView
+                    android:id="@+id/notification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_notifications" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="50dp"
-                    android:src="@drawable/ic_search" />
+                    android:src="@drawable/ic_notifications" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

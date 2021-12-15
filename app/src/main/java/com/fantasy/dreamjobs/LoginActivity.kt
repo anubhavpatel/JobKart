@@ -42,12 +42,12 @@ class LoginActivity : AppCompatActivity() {
                 .show()
             TextUtils.isEmpty(password) -> Toast.makeText(
                 this,
-                "password name is required",
+                "password is required",
                 Toast.LENGTH_LONG
             ).show()
             else -> {
                 val progressDialog = ProgressDialog(this)
-                progressDialog.setTitle("Sign Up")
+                progressDialog.setTitle("Sign In")
                 progressDialog.setMessage("Please wait,this may take a while")
                 progressDialog.setCanceledOnTouchOutside(false)
                 progressDialog.show()

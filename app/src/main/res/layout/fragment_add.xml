@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.AddFragment">
+
     <ImageView
+        android:id="@+id/closeAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/closeAdd"
-        android:src="@drawable/ic_close"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
-        />
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_close" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/createJob"
@@ -106,6 +106,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <Button
+             android:id="@+id/reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="50dp"

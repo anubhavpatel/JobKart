@@ -49,6 +49,7 @@ class ProfileFragment : Fragment() {
     private lateinit var logOutAcc : TextView
     private lateinit var editProfile : TextView
     private var filepath: Uri?=null
+    private  var uri:String?=null
     private lateinit var ImageUri : Uri
     private  var ImgUrl : String=""
     override fun onCreateView(
@@ -112,43 +113,46 @@ class ProfileFragment : Fragment() {
             progressDialog.setTitle("Uploading...")
             progressDialog.show()
             var imageRef =FirebaseStorage.getInstance().reference.child("image/pic.jpg")
-            imageRef.putFile(filepath!!)
-                .addOnSuccessListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(context,"File Uploaded",Toast.LENGTH_SHORT).show()
-                      imageRef.downloadUrl.addOnCompleteListener{
-                          if (it.isSuccessful) {
-                              val downloadUri = it.result
-                              ImgUrl=downloadUri.toString()
-                          } else {
-                              // Handle failures
-                              // ...
-                          }
-                      }
-                   if(ImgUrl!=""){ databaseReference.child(uid).child("imgUrl").setValue(ImgUrl)
-
-                   }
-
-                }
-                .addOnFailureListener(){
-                    progressDialog.dismiss()
-                    Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show()
-                }
-                .addOnProgressListener  {
-                    val progress = (100.0 * it.bytesTransferred)/ it.totalByteCount
+            val uploadTask:UploadTask=imageRef.putFile(filepath!!)
+            uploadTask.addOnSuccessListener { it ->
+                val imageUri=it.storage.downloadUrl
+                imageUri.addOnSuccessListener {
+                    ImgUrl=it.toString()
                     Toast.makeText(context,"Uploaded",Toast.LENGTH_SHORT).show()
+                    if(ImgUrl!=""){
+                        databaseReference.child(uid).child("imgUrl").setValue(ImgUrl)
+                    }
+                    progressDialog.dismiss()
                 }
-        }
+            }
+
+
+
+
+
+    }
     }
     
     private fun getUserData() {
+
         databaseReference.child(uid).addValueEventListener(object : ValueEventListener{
+
             override fun onDataChange(snapshot: DataSnapshot) {
+
                  profile_name.text=snapshot.child("fullName").value.toString()
+
+//                Glide.with(activity!!).load(uri).into(imgProfile)
+                if(snapshot.child("imgUrl").exists()){
                 context?.let {
                     Glide.with(it)
-                        .load("https://firebasestorage.googleapis.com/v0/b/dream-jobs-f67e9.appspot.com/o/image%2Fpic.jpg?alt=media&token=bb8f99dc-a07e-45de-80ed-6b92866e76d2")
+                        .load(snapshot.child("imgUrl").value.toString())
                         .into(imgProfile)
+                }
+            }else{
+//                    context?.let {
+//                        Glide.with(it)
+//                            .load()
+//                            .into(imgProfile)
                 }
             }
 
