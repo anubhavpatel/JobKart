@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
         uid = auth.currentUser?.uid.toString()
         recyclerView=view.findViewById(R.id.recyclerJobs)
         recyclerView.layoutManager=LinearLayoutManager(context)
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("jobPost")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Users").child("JobPosted")
         databaseReference.addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrayList.clear()

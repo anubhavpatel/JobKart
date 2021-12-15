@@ -45,7 +45,8 @@
         android:layout_marginRight="25dp"
         android:background="@drawable/edit_text"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:maxLength="15"/>
         <Button
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"

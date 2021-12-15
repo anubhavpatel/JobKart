@@ -26,6 +26,7 @@ class AddFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var uid : String
     private  lateinit var databaseReference : DatabaseReference
+    private  lateinit var databaseReference1 : DatabaseReference
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +54,16 @@ class AddFragment : Fragment() {
             map["time"] = currentTimestamp.toString()
             databaseReference.updateChildren(map).addOnCompleteListener{
                 if (it.isSuccessful){
-                    Toast.makeText(context,"Successfully job posted",Toast.LENGTH_SHORT).show()
+                    databaseReference1 = FirebaseDatabase.getInstance().getReference("Users").child("JobPosted").child(currentTimestamp.toString())
+                    databaseReference1.updateChildren(map).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            Toast.makeText(context,"Successfully job posted",Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(context,"something went wrong with main job post",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+
                 }
                 else{
                     Toast.makeText(context,"something went wrong",Toast.LENGTH_SHORT).show()
