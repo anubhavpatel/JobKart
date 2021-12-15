@@ -53,9 +53,10 @@ class RegisterActivity : AppCompatActivity() {
         val  password = passwordSignUp.text.toString()
         when{
             TextUtils.isEmpty(fullName) -> Toast.makeText(this,"full name is required", Toast.LENGTH_LONG).show()
-            TextUtils.isEmpty(mobileNumber) -> Toast.makeText(this,"user name is required", Toast.LENGTH_LONG).show()
+            TextUtils.isEmpty(mobileNumber) -> Toast.makeText(this,"mobile number is required", Toast.LENGTH_LONG).show()
             TextUtils.isEmpty(email) -> Toast.makeText(this,"email is required", Toast.LENGTH_LONG).show()
-            TextUtils.isEmpty(password) -> Toast.makeText(this,"password name is required", Toast.LENGTH_LONG).show()
+            TextUtils.isEmpty(password) -> Toast.makeText(this,"password is required", Toast.LENGTH_LONG).show()
+
             else -> {
                 val progressDialog = ProgressDialog(this)
                 progressDialog.setTitle("Sign Up")
