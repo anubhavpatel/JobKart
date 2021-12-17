@@ -1,5 +1,6 @@
 package com.fantasy.dreamjobs
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import com.fantasy.dreamjobs.Fragment.HomeFragment
 import com.fantasy.dreamjobs.Fragment.ProfileFragment
 import com.fantasy.dreamjobs.Fragment.chat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity() {
     private var onNavigationItemSelectedListener =
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             }}
             false
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,10 +41,13 @@ class MainActivity : AppCompatActivity() {
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         moveToFragment(HomeFragment())
+
     }
+
     private fun moveToFragment(fragment: Fragment){
         val fragmentTrans = supportFragmentManager.beginTransaction()
         fragmentTrans.replace(R.id.fragment_container,fragment)
         fragmentTrans.commit()
     }
+
 }

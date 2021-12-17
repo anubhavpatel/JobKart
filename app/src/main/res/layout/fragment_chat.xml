@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.chat"
-    android:background="@drawable/chat_bg">
+    tools:context=".Fragment.chat">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="This will be updated soon...." />
 
 </RelativeLayout>

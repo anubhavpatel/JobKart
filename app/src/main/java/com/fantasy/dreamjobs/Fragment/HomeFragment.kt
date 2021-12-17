@@ -1,5 +1,12 @@
 package com.fantasy.dreamjobs.Fragment
 
+
+import android.accessibilityservice.GestureDescription
+import android.app.AlertDialog
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +15,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,6 +26,11 @@ import com.fantasy.dreamjobs.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import de.hdodenhof.circleimageview.CircleImageView
+import java.lang.Exception
+import com.fantasy.dreamjobs.MainActivity
+import android.content.DialogInterface
+import android.inputmethodservice.Keyboard
+
 
 class HomeFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -43,6 +57,19 @@ class HomeFragment : Fragment() {
         searchJobs=view.findViewById(R.id.searchJobs)
         recyclerView.layoutManager=LinearLayoutManager(context)
         imgPro=view.findViewById(R.id.imgPro)
+
+        if (checkNetwork()) {
+        }
+        else if (!checkNetwork()) {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("Ohh fuck!")
+            // Set Alert Title
+            builder.setTitle("No internet connection")
+            builder.setPositiveButton("OK",null)
+            val alertDialog = builder.create()
+            alertDialog.show()
+
+        }
         // for fetching img on mainActivity //
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         if (uid.isNotEmpty()) {
@@ -83,6 +110,15 @@ class HomeFragment : Fragment() {
 
         })
     }
+
+  private fun checkNetwork() : Boolean{
+      return try {
+          val command = "ping -c 1 google.com"
+          Runtime.getRuntime().exec(command).waitFor() == 0
+      } catch (e: Exception) {
+          false
+      }
+  }
 
     private fun getUserData() {
         databaseReference.child(uid).addValueEventListener(object : ValueEventListener{

@@ -3,6 +3,7 @@ package com.fantasy.dreamjobs.Fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -58,6 +59,12 @@ class AddFragment : Fragment() {
         }
 
         jobPosted.setOnClickListener {
+            if(TextUtils.isEmpty(jobTitle.text)||TextUtils.isEmpty(location.text)||TextUtils.isEmpty(description.text))
+            {
+          Toast.makeText(context,"All fields are required!", Toast.LENGTH_LONG).show()
+
+            }else {
+
             val currentTimestamp = System.currentTimeMillis()
             databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("jobPost").child(currentTimestamp.toString())
             val map= HashMap<String,Any>()
@@ -81,7 +88,9 @@ class AddFragment : Fragment() {
                 else{
                     Toast.makeText(context,"something went wrong",Toast.LENGTH_SHORT).show()
                 }
+
             }
+    }
         }
 
     }
