@@ -1,6 +1,7 @@
 package com.fantasy.dreamjobs.Fragment
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Context
@@ -21,6 +22,7 @@ import com.fantasy.dreamjobs.EditProfileActivity
 import com.fantasy.dreamjobs.LoginActivity
 import com.fantasy.dreamjobs.R
 import com.fantasy.dreamjobs.databinding.FragmentProfileBinding
+
 import com.firebase.ui.auth.data.model.User
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -32,6 +34,7 @@ import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.File
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -65,10 +68,23 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser?.uid.toString()
+        if (checkNetwork()) {
+        }
+        else if (!checkNetwork()) {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("Ohh fuck!")
+            // Set Alert Title
+            builder.setTitle("No internet connection")
+            builder.setPositiveButton("OK",null)
+            val alertDialog = builder.create()
+            alertDialog.show()
+
+        }
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         if (uid.isNotEmpty()) {
             getUserData()
         }
+
         setImage = view.findViewById(R.id.setImage)
         imgProfile = view.findViewById(R.id.imgProfile)
         setImage.setOnClickListener {
@@ -87,7 +103,14 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
     }
-
+        private fun checkNetwork() : Boolean{
+            return try {
+                val command = "ping -c 1 google.com"
+                Runtime.getRuntime().exec(command).waitFor() == 0
+            } catch (e: Exception) {
+                false
+            }
+        }
     private fun startFileChooser() {
         val intent = Intent()
         intent.type = "image/*"

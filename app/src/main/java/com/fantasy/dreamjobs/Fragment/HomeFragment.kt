@@ -27,9 +27,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import de.hdodenhof.circleimageview.CircleImageView
 import java.lang.Exception
-import com.fantasy.dreamjobs.MainActivity
-import android.content.DialogInterface
-import android.inputmethodservice.Keyboard
+
 
 
 class HomeFragment : Fragment() {

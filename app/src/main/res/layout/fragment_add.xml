@@ -14,7 +14,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="#A9A9A9"
+        app:cardBackgroundColor="#343332"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp">
 
@@ -43,7 +43,9 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="40dp"
                     android:hint="Set a Job Title"
-                    android:maxLength="30"/>
+                    android:textColorHint="@color/white"
+                    android:maxLength="30"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -57,16 +59,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:text="Set a location"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="17dp"
                     android:drawableLeft="@drawable/ic_location"
                     android:hint="India"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:maxLength="10"/>
 
             </LinearLayout>
@@ -82,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Description"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <EditText
@@ -91,6 +95,8 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="i want a android developer"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
                     android:inputType="text|textMultiLine|textCapSentences"/>
             </LinearLayout>
 
@@ -109,7 +115,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="50dp"
+            android:background="@drawable/btn_bg"
             android:text="Reset"
+            android:textColor="@color/white"
+            android:backgroundTint="#343332"
             />
         <Button
             android:id="@+id/jobPosted"
@@ -117,6 +126,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:text="Post Job"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="#343332"
             />
     </LinearLayout>
 
